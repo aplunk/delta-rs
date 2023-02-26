@@ -154,7 +154,8 @@ impl ObjectStoreKind {
             "gs" => Ok(ObjectStoreKind::Google),
             "https" => {
                 let host = url.host_str().unwrap_or_default();
-                if host.contains("amazonaws.com") {
+                if host.contains("amazonaws.com")
+                    || host.contains("r2.cloudflarestorage.com") {
                     Ok(ObjectStoreKind::S3)
                 } else if host.contains("dfs.core.windows.net")
                     || host.contains("blob.core.windows.net")
